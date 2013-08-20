@@ -177,6 +177,16 @@ describe('swig.compileFile', function () {
       done();
     }));
   });
+
+  it("should not modify the options arguments", function (done) {
+    var opts, fromFile, fromString;
+    opts = {};
+    fromFile = swig.compileFile(test, opts);
+    fromString = swig.compile("{{value}}", opts);
+    expect(fromString({value: "swig"})).to.equal("swig");
+    done();
+  });
+
 });
 
 describe('swig.renderFile', function () {
